@@ -16,177 +16,23 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTabWidget" name="yearlyTabs">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="until2021">
-       <attribute name="title">
-        <string>&lt;= 2021</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>30</y>
-          <width>291</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Składki</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="1">
-          <widget class="QDoubleSpinBox" name="pensionContribEmployee">
-           <property name="value">
-            <double>9.760000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Chorobowa</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Rentowa</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Wypadkowa</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Emerytalna</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Pracownik</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Pracodawca</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Zdrowotna</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Zdr. do odl.</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
-         </item>
-         <item row="3" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
-         </item>
-         <item row="4" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
-         </item>
-         <item row="4" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_10"/>
-         </item>
-         <item row="5" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_11"/>
-         </item>
-         <item row="6" column="1">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
-         </item>
-         <item row="5" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
-         </item>
-         <item row="6" column="2">
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_14"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>40</y>
-          <width>191</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Progi podatkowe</string>
-        </property>
-       </widget>
-       <widget class="QTableView" name="dataView">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>270</y>
-          <width>611</width>
-          <height>192</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QSpinBox" name="contribLimit">
-        <property name="geometry">
-         <rect>
-          <x>500</x>
-          <y>140</y>
-          <width>81</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="maximum">
-         <number>999999999</number>
-        </property>
-        <property name="value">
-         <number>157770</number>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
-      </widget>
-     </widget>
-    </item>
-    <item>
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string>Comparison</string>
       </property>
+      <widget class="QTabWidget" name="yearlyTabs">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>782</width>
+         <height>495</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>

@@ -8,14 +8,32 @@ class Month;
 struct Parameters {
     struct {
         double pensionContribEmployee;
+        double disabilityPensionContribEmployee;
+        double accidentContribEmployee;
+        double sicknessContribEmployee;
+        double healthCareContribEmployee;
         double limit;
     } insuranceContribs;
+};
+
+class IInputData {
+    public:
+        virtual double insuranceLimit() const = 0;
+        virtual double pensionEmployee() const = 0;
+        virtual double disabilityPensionEmployee() const = 0;
+        virtual double accidentEmployee() const = 0;
+        virtual double sicknessEmployee() const = 0;
+        virtual double healthCareEmployee() const = 0;
+        virtual double taxDeductibleCost() const = 0;
+        virtual double taxThreshold() const = 0;
+        virtual double tax1() const = 0;
+        virtual double tax2() const = 0;
 };
 
 class DataModel : public QAbstractTableModel
 {
     public:
-        DataModel(Parameters* params, double gross);
+        DataModel(IInputData* params, double gross);
 
         void recalculate();
 
