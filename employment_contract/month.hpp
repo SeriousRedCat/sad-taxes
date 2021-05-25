@@ -16,7 +16,9 @@ class Month
         double sicknessContribution() const;
         double healthCareContribution() const;
         double taxBase() const;
+        double taxBaseCumulative() const;
         double tax() const;
+        double net() const;
 
         void recalculate();
     private:
@@ -30,7 +32,9 @@ class Month
         double m_sicknessContribution;
         double m_healthCareContribution;
         double m_taxBase;
+        double m_taxBaseCumulative;
         double m_tax;
+        double m_net;
 };
 
 #endif // MONTH_HPP

@@ -32,6 +32,7 @@ class YearWidget : public QWidget, public IInputData
         double taxThreshold() const;
         double tax1() const;
         double tax2() const;
+        double healthCareTaxFreeEmployee() const;
 };
 
 #endif // YEARWIDGET_HPP

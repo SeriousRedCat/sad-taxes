@@ -50,9 +50,19 @@ double Month::taxBase() const
     return m_taxBase;
 }
 
+double Month::taxBaseCumulative() const
+{
+    return m_taxBaseCumulative;
+}
+
 double Month::tax() const
 {
     return m_tax;
+}
+
+double Month::net() const
+{
+    return m_net;
 }
 
 void Month::recalculate()
@@ -71,6 +81,10 @@ void Month::recalculate()
     m_healthCareContribution = (m_gross - (m_pensionContribution + m_disabilityContribution + m_sicknessContribution + m_accidentContribution)) * m_params->healthCareEmployee() / 100;
 
     m_taxBase = m_gross - (m_pensionContribution + m_disabilityContribution + m_sicknessContribution) - m_params->taxDeductibleCost() / 12;
+    m_taxBaseCumulative = (m_monthBefore ? m_monthBefore->taxBaseCumulative() + m_taxBase : m_taxBase);
 
-    m_tax = // work in progress
+    double _1 = std::min(std::max(m_params->taxThreshold() - m_taxBaseCumulative + m_taxBase, 0.), m_taxBase);
+    m_tax = _1 * m_params->tax1() / 100 + (m_taxBase - _1) * m_params->tax2() / 100 - m_healthCareContribution * m_params->healthCareTaxFreeEmployee() / m_params->healthCareEmployee();
+
+    m_net = m_gross - (m_pensionContribution + m_disabilityContribution + m_accidentContribution + m_sicknessContribution + m_healthCareContribution) - m_tax;
 }

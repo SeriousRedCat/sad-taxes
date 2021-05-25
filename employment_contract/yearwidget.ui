@@ -120,7 +120,11 @@
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
+       <widget class="QDoubleSpinBox" name="healthCareTaxFreeContribEmployee">
+        <property name="value">
+         <double>7.750000000000000</double>
+        </property>
+       </widget>
       </item>
       <item row="5" column="2">
        <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>

@@ -47,6 +47,7 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
                     case 5: return month->healthCareContribution();
                     case 6: return month->taxBase();
                     case 7: return month->tax();
+                    case 8: return month->net();
                     default: return QVariant();
                 }
             } else {
@@ -67,6 +68,8 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
                                                    [](double acc, Month* el){return acc + el->taxBase();});
                     case 7: return std::accumulate(m_months.begin(), m_months.end(), 0.,
                                                    [](double acc, Month* el){return acc + el->tax();});
+                    case 8: return std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                   [](double acc, Month* el){return acc + el->net();});
                     default: return QVariant();
                 }
             }
@@ -75,4 +78,33 @@ QVariant DataModel::data(const QModelIndex &index, int role) const
         default:
             return QVariant();
     }
+}
+
+QVariant DataModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole) {
+        switch (orientation) {
+            case Qt::Vertical: {
+                switch (section) {
+                    case 0: return tr("January");
+                    case 1: return tr("February");
+                    case 2: return tr("March");
+                    case 3: return tr("April");
+                    case 4: return tr("May");
+                    case 5: return tr("June");
+                    case 6: return tr("July");
+                    case 7: return tr("August");
+                    case 8: return tr("September");
+                    case 9: return tr("October");
+                    case 10: return tr("November");
+                    case 11: return tr("December");
+                    default: return QVariant();
+                }
+            }
+            case Qt::Horizontal: {
+                return QAbstractTableModel::headerData(section, orientation, role);
+            }
+        }
+    }
+    return QAbstractTableModel::headerData(section, orientation, role);
 }

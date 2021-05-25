@@ -24,6 +24,7 @@ class IInputData {
         virtual double accidentEmployee() const = 0;
         virtual double sicknessEmployee() const = 0;
         virtual double healthCareEmployee() const = 0;
+        virtual double healthCareTaxFreeEmployee() const = 0;
         virtual double taxDeductibleCost() const = 0;
         virtual double taxThreshold() const = 0;
         virtual double tax1() const = 0;
@@ -42,6 +43,7 @@ class DataModel : public QAbstractTableModel
         int rowCount(const QModelIndex &parent) const;
         int columnCount(const QModelIndex &parent) const;
         QVariant data(const QModelIndex &index, int role) const;
+        QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
     protected:
         QVector<Month*> m_months;

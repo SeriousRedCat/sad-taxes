@@ -17,6 +17,7 @@ YearWidget::YearWidget(QWidget *parent) :
     connect(ui->accidentContribEmployee, QOverload<double>::of(&QDoubleSpinBox::valueChanged), m_model, &DataModel::recalculate);
     connect(ui->sicknessContribEmployee, QOverload<double>::of(&QDoubleSpinBox::valueChanged), m_model, &DataModel::recalculate);
     connect(ui->healthCareContribEmployee, QOverload<double>::of(&QDoubleSpinBox::valueChanged), m_model, &DataModel::recalculate);
+    connect(ui->healthCareTaxFreeContribEmployee, QOverload<double>::of(&QDoubleSpinBox::valueChanged), m_model, &DataModel::recalculate);
     connect(ui->taxDeductibleCostLimit, QOverload<int>::of(&QSpinBox::valueChanged), m_model, &DataModel::recalculate);
 }
 
@@ -73,4 +74,9 @@ double YearWidget::tax1() const
 double YearWidget::tax2() const
 {
     return ui->tax2->value();
+}
+
+double YearWidget::healthCareTaxFreeEmployee() const
+{
+    return ui->healthCareTaxFreeContribEmployee->value();
 }
