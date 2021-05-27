@@ -2,7 +2,7 @@
 #include "ui_yearwidget.h"
 
 #include "degressivetaxfreeamount.hpp"
-
+#include <QDebug>
 YearWidget::YearWidget(Year year, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::YearWidget),
@@ -22,6 +22,7 @@ YearWidget::YearWidget(Year year, QWidget *parent) :
 
     ui->dataView->setModel(m_model);
     m_model->recalculate();
+    qDebug() << "YEARLY:" << m_model->yearlyNetSalary();
 
     connect(ui->contribLimit, QOverload<int>::of(&QSpinBox::valueChanged), m_model, &DataModel::recalculate);
     connect(ui->pensionContribEmployee, QOverload<double>::of(&QDoubleSpinBox::valueChanged), m_model, &DataModel::recalculate);
@@ -96,4 +97,17 @@ double YearWidget::healthCareTaxFreeEmployee() const
 double YearWidget::taxFreeAmount(double cumulativeTaxBase) const
 {
     return m_taxFreeAmount->monthlyTaxFreeAmount(cumulativeTaxBase);
+}
+
+QPair<QVector<double>, QVector<double> > YearWidget::net() const
+{
+    std::pair<QVector<double>, QVector<double> > rval;
+    QVector<double> x, y;
+    for(int i = 2000; i <= 15000; i += 1000) {
+        auto model = new DataModel(this, i);
+        model->recalculate();
+        x.append(i);
+        y.append(model->yearlyNetSalary());
+    }
+    return qMakePair(x, y);
 }

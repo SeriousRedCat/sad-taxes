@@ -1,7 +1,7 @@
 #include "month.hpp"
 #include "datamodel.hpp"
 
-Month::Month(IInputData* params, Month *monthBefore, double gross):
+Month::Month(const IInputData *params, Month *monthBefore, double gross):
     m_params(params),
     m_monthBefore(monthBefore),
     m_gross(gross),

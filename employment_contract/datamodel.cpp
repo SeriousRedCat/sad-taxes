@@ -1,7 +1,8 @@
 #include "datamodel.hpp"
 #include "month.hpp"
 
-DataModel::DataModel(IInputData *params, double gross)
+DataModel::DataModel(const IInputData *params, double gross):
+    m_params(params)
 {
     for(int i = 0; i < 12; ++i) {
         auto month = new Month(params, i > 0 ? m_months[i-1] : nullptr, gross);
@@ -119,4 +120,36 @@ QVariant DataModel::headerData(int section, Qt::Orientation orientation, int rol
         }
     }
     return QAbstractTableModel::headerData(section, orientation, role);
+}
+
+double DataModel::yearlyNetSalary() const
+{
+    double gross = std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                       [](double acc, Month* el){return acc + el->gross();});
+
+    double dochod = gross - m_params->taxDeductibleCost();
+
+    double tax_taken = std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                      [](double acc, Month* el){return acc + el->tax();});
+
+    double contribs = std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                                         [](double acc, Month* el){return acc + el->pensionContribution();})
+                                          +std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                                         [](double acc, Month* el){return acc + el->disabilityContribution();})
+                                          +std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                                         [](double acc, Month* el){return acc + el->accidentContribution();})
+                                          +std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                                         [](double acc, Month* el){return acc + el->sicknessContribution();});
+
+    double podstawa = dochod - contribs;
+
+    double _1 = std::min(m_params->taxThreshold(), podstawa);
+    double _2 = podstawa - _1;
+    double tax = _1 * m_params->tax1()/100 + _2 * m_params->tax2()/100 - std::accumulate(m_months.begin(), m_months.end(), 0.,
+[](double acc, Month* el){return acc + el->healthCareContribution();}) * m_params->healthCareTaxFreeEmployee()/m_params->healthCareEmployee();
+
+    double net = std::accumulate(m_months.begin(), m_months.end(), 0.,
+                                                       [](double acc, Month* el){return acc + el->net();});
+
+    return net + (tax_taken - tax);
 }

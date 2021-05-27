@@ -42,6 +42,8 @@ class YearWidget : public QWidget, public IInputData
         double tax2() const;
         double healthCareTaxFreeEmployee() const;
         double taxFreeAmount(double cumulativeTaxBase) const;
+
+        QPair<QVector<double>, QVector<double> > net() const;
 };
 
 #endif // YEARWIDGET_HPP

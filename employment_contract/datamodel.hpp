@@ -35,7 +35,7 @@ class IInputData {
 class DataModel : public QAbstractTableModel
 {
     public:
-        DataModel(IInputData* params, double gross);
+        DataModel(const IInputData* params, double gross);
 
         void recalculate();
 
@@ -46,8 +46,11 @@ class DataModel : public QAbstractTableModel
         QVariant data(const QModelIndex &index, int role) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
+        double yearlyNetSalary() const;
+
     protected:
         QVector<Month*> m_months;
+        const IInputData* m_params;
 };
 
 #endif // DATAMODEL_HPP

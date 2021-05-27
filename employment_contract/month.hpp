@@ -6,7 +6,7 @@ class IInputData;
 class Month
 {
     public:
-        explicit Month(IInputData* params, Month* monthBefore, double gross);
+        explicit Month(const IInputData* params, Month* monthBefore, double gross);
 
         double gross() const;
         double grossCumulative() const;
@@ -22,7 +22,7 @@ class Month
 
         void recalculate();
     private:
-        IInputData* m_params;
+        const IInputData* m_params;
         Month* m_monthBefore;
         double m_gross;
         double m_grossCumulative;

@@ -1,6 +1,6 @@
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG += c++11
 
@@ -14,7 +14,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     employment_contract/datamodel.cpp \
-    employment_contract/month.cpp
+    employment_contract/month.cpp \
+    third_party/qcustomplot.cpp
 
 HEADERS += \
     employment_contract/degressivetaxfreeamount.hpp \
@@ -22,7 +23,8 @@ HEADERS += \
     employment_contract/yearwidget.hpp \
     mainwindow.hpp \
     employment_contract/datamodel.hpp \
-    employment_contract/month.hpp
+    employment_contract/month.hpp \
+    third_party/qcustomplot.h
 
 FORMS += \
     employment_contract/degressivetaxfreeamount.ui \
