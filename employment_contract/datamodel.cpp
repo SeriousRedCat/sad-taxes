@@ -102,7 +102,19 @@ QVariant DataModel::headerData(int section, Qt::Orientation orientation, int rol
                 }
             }
             case Qt::Horizontal: {
-                return QAbstractTableModel::headerData(section, orientation, role);
+                switch (section) {
+                    case 0: return tr("Gross");
+                    case 1: return tr("Pension");
+                    case 2: return tr("Disability");
+                    case 3: return tr("Accident");
+                    case 4: return tr("Sickness");
+                    case 5: return tr("Health");
+                    case 6: return tr("Tax base");
+                    case 7: return tr("Tax");
+                    case 8: return tr("Net");
+
+                    default: return QVariant();
+                }
             }
         }
     }

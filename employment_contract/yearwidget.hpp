@@ -8,17 +8,25 @@ namespace Ui {
 class YearWidget;
 }
 
+enum class Year {
+    Year2020,
+    Year2021
+};
+
+class ITaxFreeAmount;
+
 class YearWidget : public QWidget, public IInputData
 {
         Q_OBJECT
 
     public:
-        explicit YearWidget(QWidget *parent = nullptr);
+        explicit YearWidget(Year year, QWidget *parent = nullptr);
         ~YearWidget();
 
     private:
         Ui::YearWidget *ui;
         DataModel* m_model;
+        ITaxFreeAmount* m_taxFreeAmount;
 
         // IInputData interface
     public:
@@ -33,6 +41,7 @@ class YearWidget : public QWidget, public IInputData
         double tax1() const;
         double tax2() const;
         double healthCareTaxFreeEmployee() const;
+        double taxFreeAmount(double cumulativeTaxBase) const;
 };
 
 #endif // YEARWIDGET_HPP

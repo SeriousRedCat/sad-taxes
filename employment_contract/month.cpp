@@ -84,7 +84,7 @@ void Month::recalculate()
     m_taxBaseCumulative = (m_monthBefore ? m_monthBefore->taxBaseCumulative() + m_taxBase : m_taxBase);
 
     double _1 = std::min(std::max(m_params->taxThreshold() - m_taxBaseCumulative + m_taxBase, 0.), m_taxBase);
-    m_tax = _1 * m_params->tax1() / 100 + (m_taxBase - _1) * m_params->tax2() / 100 - m_healthCareContribution * m_params->healthCareTaxFreeEmployee() / m_params->healthCareEmployee();
+    m_tax = _1 * m_params->tax1() / 100 + (m_taxBase - _1) * m_params->tax2() / 100 - m_healthCareContribution * m_params->healthCareTaxFreeEmployee() / m_params->healthCareEmployee() - m_params->taxFreeAmount(m_taxBaseCumulative);
 
     m_net = m_gross - (m_pensionContribution + m_disabilityContribution + m_accidentContribution + m_sicknessContribution + m_healthCareContribution) - m_tax;
 }

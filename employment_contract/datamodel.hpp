@@ -29,6 +29,7 @@ class IInputData {
         virtual double taxThreshold() const = 0;
         virtual double tax1() const = 0;
         virtual double tax2() const = 0;
+        virtual double taxFreeAmount(double cumulativeTaxBase) const = 0;
 };
 
 class DataModel : public QAbstractTableModel

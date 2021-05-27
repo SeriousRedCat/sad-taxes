@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->yearlyTabs->addTab(new YearWidget(this), "test");
+    ui->yearlyTabs->addTab(new YearWidget(Year::Year2020, this), "test");
 }
 
 MainWindow::~MainWindow()
